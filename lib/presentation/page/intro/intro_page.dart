@@ -14,39 +14,58 @@ class IntroPage extends GetView<IntroPageController> {
     return Obx(() {
       final theme = globalService.theme;
       return Scaffold(
-          backgroundColor: theme().backgroundColor,
-          body: Center(
-            child: Padding(
+        backgroundColor: theme().backgroundColor,
+        body: SafeArea(
+          child: Column(children: [
+            Padding(
               padding: EdgeInsets.all(theme().mediumPadding),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  ElevatedButton(
-                    child: const Text(
-                      'Switch Theme',
-                      style: TextStyle(fontWeight: FontWeight.w500),
+                  CircleAvatar(
+                    radius: 18,
+                    backgroundColor:
+                        theme().isLight ? Colors.grey[100] : Colors.grey[800],
+                    child: IconButton(
+                      onPressed: () {
+                        globalService.theme.value =
+                            (theme().isLight) ? AppTheme.dark : AppTheme.light;
+                      },
+                      constraints: const BoxConstraints(),
+                      padding: const EdgeInsets.all(0),
+                      icon: Icon(
+                        theme().isLight ? Icons.dark_mode : Icons.sunny,
+                        color: theme().isLight ? Colors.black45 : Colors.amber,
+                      ),
                     ),
-                    style: ElevatedButton.styleFrom(
-                      primary: theme().primaryColor,
-                      onPrimary: theme().onPrimaryColor,
-                    ),
-                    onPressed: () {
-                      globalService.theme.value =
-                          theme().isLight ? AppTheme.dark : AppTheme.light;
-                    },
                   ),
-                  const SizedBox(height: 20),
-                  Obx(() {
-                    return Text(
-                      'There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain...',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(color: theme().onBackgroundColor),
-                    );
-                  }),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Text(
+                        '13 Shaban, 1442 AH',
+                        style: TextStyle(
+                          fontWeight: FontWeight.w600,
+                          fontSize: theme().bigFont,
+                          color: theme().onBackgroundColor,
+                        ),
+                      ),
+                      Text(
+                        'Jummat, 25 Maret',
+                        style: TextStyle(
+                          fontSize: theme().smallFont,
+                          color: theme().onBackgroundColor,
+                        ),
+                      ),
+                    ],
+                  )
                 ],
               ),
             ),
-          ));
+          ]),
+        ),
+      );
     });
   }
 }
