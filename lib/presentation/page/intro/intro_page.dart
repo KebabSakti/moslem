@@ -311,11 +311,11 @@ class IntroPage extends GetView<IntroPageController> {
                               alignment: Alignment.bottomRight,
                               child: Padding(
                                 padding:
-                                    const EdgeInsets.only(right: 6, bottom: 2),
+                                    const EdgeInsets.only(right: 6, bottom: 6),
                                 child: CachedNetworkImage(
                                   imageUrl:
-                                      'https://cdn-icons.flaticon.com/png/512/2387/premium/2387889.png?token=exp=1648231029~hmac=ed7889c8c636e4b5133f77b0b7989f78',
-                                  width: 80,
+                                      'https://cdn-icons-png.flaticon.com/512/740/740860.png',
+                                  width: 65,
                                 ),
                               ),
                             ),
